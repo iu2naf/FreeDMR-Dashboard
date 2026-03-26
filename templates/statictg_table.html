@@ -1,21 +1,29 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+:root{--primary:#2563eb;--primary-dark:#1d4ed8;--success:#22c55e;--warning:#f59e0b;--accent:#06b6d4;--bg-main:#0f172a;--bg-card:#1e293b;--bg-hover:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:#334155;--tg-orange:#f97316;--dmr-blue:#0ea5e9;--call-green:#22c55e;--radius-md:8px;--radius-lg:12px;--shadow:0 4px 6px -1px rgba(0,0,0,0.3)}body{margin:0;padding:20px;background:var(--bg-main);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;color:var(--text-primary)}fieldset{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px 20px;margin:16px auto;box-shadow:var(--shadow)}fieldset.big{max-width:1100px}legend{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:8px 16px;border-radius:var(--radius-md);font-weight:600;font-size:14px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 8px;text-align:center;border-bottom:1px solid var(--border)}th{background:linear-gradient(180deg,#2d3a4f,#1e293b);color:var(--text-secondary);font-weight:600;text-transform:uppercase;font-size:11px}tr:hover{background:var(--bg-hover)}.w4data{width:100%;background:var(--bg-card);border:2px dashed var(--border);border-radius:var(--radius-md);padding:30px;text-align:center;color:var(--warning);font-size:14px;font-weight:500}.stctg{background:var(--bg-card);table-layout:fixed}.th1wd{width:120px}.th2wd{width:160px}.th3wd{width:90px}.th4wd{width:40px}.th5wd{width:50%}.th6wd{width:65px}.th7wd{width:65px}.connted-bkgnd{background:rgba(34,197,94,0.15)!important;color:var(--success);font-weight:500}.ts1-bkgnd{background:rgba(249,115,22,0.1)}.txt-0065ff{color:var(--dmr-blue)}.txt-008000{color:#008000}.txt-yellow{color:#fbbf24}.fnt-8pt{font-size:11px}.slot-indicator{display:inline-block;padding:4px 10px;border-radius:4px;font-weight:600;font-size:12px}.slot-indicator.TS1{background:rgba(249,115,22,0.2);color:var(--tg-orange)}.slot-indicator.TS2{background:rgba(14,165,233,0.2);color:var(--dmr-blue)}.tooltip{position:relative;display:inline-block}.tooltip .tooltiptext{visibility:hidden;width:280px;background:#2d3748;border:1px solid #475569;box-shadow:0 10px 15px -3px rgba(0,0,0,0.4);color:#e2e8f0;text-align:left;border-radius:var(--radius-md);padding:12px;position:absolute;z-index:100;left:100%;top:0;opacity:0;transition:opacity .2s,transform .2s;transform:translateX(-10px);font-size:12px;line-height:1.5}.tooltip:hover .tooltiptext{visibility:visible;opacity:1;transform:translateX(8px)}.location{font-size:11px;color:var(--tg-orange);font-weight:500}
+</style>
+
 <fieldset class="big">
   <legend><b>.: Static TG :.</b></legend>
   {% if _table['MASTERS']|length > 0 %}
   <table class="stctg">
-    <tr>
-      <th class="th1wd">HB Protocol<br>Master Systems</th>
-      <th class="th2wd">Callsign (DMR Id)<br>Info</th>
-      <th class="th3wd">Time Connected</th>
-      <th class="th4wd">Slot</th>
-      <th class="th5wd">Static TG</th>
-      <th class="th6wd">Single TG</th>
-      <th class="th7wd">T/O</th>
-    </tr>
+    <thead>
+      <tr>
+        <th class="th1wd">HB Protocol<br>Master Systems</th>
+        <th class="th2wd">Callsign (DMR Id)<br>Info</th>
+        <th class="th3wd">Time Connected</th>
+        <th class="th4wd">Slot</th>
+        <th class="th5wd">Static TG</th>
+        <th class="th6wd">Single TG</th>
+        <th class="th7wd">T/O</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for _master in _table['MASTERS'] %}
     {% if ((_table['MASTERS'][_master]['PEERS']|length==0 or _table['MASTERS'][_master]['PEERS']|length>0) and
     emaster==True) or (_table['MASTERS'][_master]['PEERS']|length>0 and emaster==False) %}
     <tr>
-      <td  rowspan="{{ (_table['MASTERS'][_master]['PEERS']|length * 2) +1 }}">
+      <td rowspan="{{ (_table['MASTERS'][_master]['PEERS']|length * 2) +1 }}">
         <span><b>{{_master}}</b></span><br>
         <span class="fnt-8pt">{{_table['MASTERS'][_master]['REPEAT']}}</span>
       </td>
@@ -28,23 +36,23 @@
           <span class="fnt-8pt">(Id: {{ _client }})</span>
           <div class="tooltiptext c2s-pos1">
             {% if _cdata['RX_FREQ'] == 'N/A' and _cdata['TX_FREQ'] == 'N/A' %}
-            <b>Type: <span class="txt-yellow">IP Network</span></b><br>
+            <b>Type:</b> <span class="txt-yellow">IP Network</span><br>
             {% else %}
-            <b>Type: <span class="txt-yellow">Radio</span></b> ({{ _cdata['SLOTS'] }})<br>
+            <b>Type:</b> <span class="txt-yellow">Radio</span> ({{ _cdata['SLOTS'] }})<br>
             {% endif %}
-            <b>Soft_Ver</b>: {{_cdata['SOFTWARE_ID'] }}<br>
-            <b>Hardware</b>: {{_cdata['PACKAGE_ID'] }}
+            <b>Soft_Ver:</b> {{_cdata['SOFTWARE_ID'] }}<br>
+            <b>Hardware:</b> {{_cdata['PACKAGE_ID'] }}
           </div>
         </div><br>
         <div class="location">{{_cdata['LOCATION']}}</div>
       </td>
         <td class="connted-bkgnd" rowspan="2">{{ _cdata['CONNECTED'] }}</td>
-        <td class="txt-b70101 ts1-bkgnd">TS1</td>
+        <td class="ts1-bkgnd"><span class="slot-indicator TS1">TS1</span></td>
         <td class="ts1-bkgnd"><b>{{ _cdata['TS1_STATIC']|join(', ') }}</b></td>
         <td class="ts1-bkgnd txt-008000">{{ _cdata['SINGLE_TS1']['TGID'] if 'SINGLE_TS1' in _cdata else '' }}</td>
         <td class="ts1-bkgnd txt-008000">{{ _cdata['SINGLE_TS1']['TO'] if 'SINGLE_TS1' in _cdata else '' }}</td>
       <tr>
-        <td><span class="txt-3a4aa6">TS2</span></td>
+        <td><span class="slot-indicator TS2">TS2</span></td>
         <td><b>{{ _cdata['TS2_STATIC']|join(', ') }}</b></td>
         <td class="txt-008000">{{ _cdata['SINGLE_TS2']['TGID'] if 'SINGLE_TS2' in _cdata else '' }}</td>
         <td class="txt-008000">{{ _cdata['SINGLE_TS2']['TO'] if 'SINGLE_TS2' in _cdata else '' }}</td>
@@ -53,6 +61,7 @@
       {% endfor %}
       {% endif %}
       {% endfor %}
+    </tbody>
   </table>
   {% else %}
   <table class="w4data"><tr><td><b>Waiting for data from the Server...</b></td></tr></table>

@@ -1,1 +1,33 @@
 
+2026-03-26 21:34:20 INFO monitor.py starting up
+2026-03-26 21:34:20 INFO 
+
+	Copyright (c) 2016-2023
+	The Regents of the K0USY Group. All rights reserved.
+
+	Python 3 port:
+	2019 Steve Miller, KC1AWV <smiller@kc1awv.net>
+
+	FDMR-Monitor OA4DOA
+
+
+2026-03-26 21:34:20 INFO reportClient object for connecting to HBlink.py created at: <__main__.reportClientFactory object at 0x10e9b5fd0>
+2026-03-26 21:34:20 INFO Initiating Connection to Server.
+2026-03-26 21:34:20 INFO Starting webserver on port 9000 with SSL = False
+2026-03-26 21:34:20 INFO Connection failed. Reason: [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionRefusedError'>: Connection was refused by other side: 61: Connection refused.
+]
+2026-03-26 21:34:21 INFO 818 entries added to: talkgroup_ids table from: talkgroup_ids.json
+2026-03-26 21:34:21 INFO 2 entries added to: talkgroup_ids table from: local_talkgroup_ids.json
+2026-03-26 21:34:22 INFO 10667 entries added to: peer_ids table from: peer_ids.json
+2026-03-26 21:34:22 INFO 2 entries added to: peer_ids table from: local_peer_ids.json
+2026-03-26 21:34:22 INFO Initiating Connection to Server.
+2026-03-26 21:34:22 INFO Connection failed. Reason: [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionRefusedError'>: Connection was refused by other side: 61: Connection refused.
+]
+2026-03-26 21:34:24 INFO 301849 entries added to: subscriber_ids table from: subscriber_ids.csv
+2026-03-26 21:34:24 INFO 2 entries added to: subscriber_ids table from: local_subscriber_ids.json
+2026-03-26 21:34:25 INFO peer_ids entries: 10669
+2026-03-26 21:34:25 INFO talkgroup_ids entries: 820
+2026-03-26 21:34:25 INFO subscriber_ids entries: 301851
+2026-03-26 21:34:29 INFO Initiating Connection to Server.
+2026-03-26 21:34:29 INFO Connection failed. Reason: [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionRefusedError'>: Connection was refused by other side: 61: Connection refused.
+]
