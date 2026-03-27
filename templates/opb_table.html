@@ -1,41 +1,212 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
-:root{--primary:#2563eb;--primary-dark:#1d4ed8;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444;--accent:#06b6d4;--bg-main:#0f172a;--bg-card:#1e293b;--bg-hover:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:#334155;--tg-orange:#f97316;--dmr-blue:#0ea5e9;--call-green:#22c55e;--radius-md:8px;--radius-lg:12px;--shadow:0 4px 6px -1px rgba(0,0,0,0.3)}body{margin:0;padding:20px;background:var(--bg-main);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;color:var(--text-primary)}fieldset{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px 20px;margin:16px auto;box-shadow:var(--shadow)}fieldset.big{max-width:1100px}legend{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:8px 16px;border-radius:var(--radius-md);font-weight:600;font-size:14px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 8px;text-align:center;border-bottom:1px solid var(--border)}th{background:linear-gradient(180deg,#2d3a4f,#1e293b);color:var(--text-secondary);font-weight:600;text-transform:uppercase;font-size:11px}tr:hover{background:var(--bg-hover)}.w4data{width:100%;background:var(--bg-card);border:2px dashed var(--border);border-radius:var(--radius-md);padding:30px;text-align:center;color:var(--warning);font-size:14px;font-weight:500}.opb{background:var(--bg-card)}.opb .th1wd{width:12%}.opb .th2wd{width:12%}.opb .th3wd{width:70%}.opb .col1{text-align:left;padding-left:20px;font-weight:600;color:var(--accent)}.opb .col2{font-size:12px;color:var(--text-secondary)}.opb .col3{font-size:12px;color:var(--text-primary)}.dmr-id{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent);background:rgba(6,182,212,0.1);padding:2px 6px;border-radius:3px}.qso-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(6,182,212,0.1);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 12px;margin:4px;font-family:'JetBrains Mono',monospace;font-size:13px}.qso-badge .type{font-weight:700;font-size:11px;padding:2px 6px;border-radius:3px}.qso-badge .type.RX{background:var(--tg-orange);color:#fff}.qso-badge .type.TX{background:var(--call-green);color:#fff}.qso-badge .call{color:var(--dmr-blue);font-weight:600}.qso-badge .arrow{color:var(--danger)}.qso-badge .tg{color:var(--tg-orange);font-weight:600}
+  @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap");
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --accent: #06b6d4;
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-hover: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border: #334155;
+    --tg-orange: #f97316;
+    --dmr-blue: #0ea5e9;
+    --call-green: #22c55e;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  }
+  body {
+    margin: 0;
+    padding: 20px;
+    background: var(--bg-main);
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+  fieldset {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin: 16px auto;
+    box-shadow: var(--shadow);
+  }
+  fieldset.big {
+    max-width: 1100px;
+  }
+  legend {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th,
+  td {
+    padding: 12px 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: linear-gradient(180deg, #2d3a4f, #1e293b);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  tr:hover {
+    background: var(--bg-hover);
+  }
+  .w4data {
+    width: 100%;
+    background: var(--bg-card);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    padding: 30px;
+    text-align: center;
+    color: var(--warning);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .opb {
+    background: var(--bg-card);
+  }
+  .opb .th1wd {
+    width: 12%;
+  }
+  .opb .th2wd {
+    width: 12%;
+  }
+  .opb .th3wd {
+    width: 70%;
+  }
+  .opb .col1 {
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .opb .col2 {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .opb .col3 {
+    font-size: 12px;
+    color: var(--text-primary);
+  }
+  .dmr-id {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(6, 182, 212, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .qso-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    margin: 4px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+  }
+  .qso-badge .type {
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .qso-badge .type.RX {
+    background: var(--tg-orange);
+    color: #fff;
+  }
+  .qso-badge .type.TX {
+    background: var(--call-green);
+    color: #fff;
+  }
+  .qso-badge .call {
+    color: var(--dmr-blue);
+    font-weight: 600;
+  }
+  .qso-badge .arrow {
+    color: var(--danger);
+  }
+  .qso-badge .tg {
+    color: var(--tg-orange);
+    font-weight: 600;
+  }
 </style>
 
 <fieldset class="big">
-  <legend><b>.: OpenBridge status :.</b></legend>
+  <!--<legend><b>.: OpenBridge status :.</b></legend>-->
   {% if _table['OPENBRIDGES']|length >0 %}
   <table class="opb">
     <thead>
       <tr>
-        <th class="th1wd">OpenBridge<br>Systems</th>
+        <th class="th1wd">OpenBridge<br />Systems</th>
         <th class="th2wd">Network ID</th>
         <th class="th3wd">Active QSOs</th>
       </tr>
     </thead>
     <tbody>
-    {% for _openbridge in _table['OPENBRIDGES'] %}
-    <tr>
-      <td class="col1"><b>{{ _openbridge}}</b></td>
-      <td class="col2">Net ID: <span class="dmr-id">{{ _table['OPENBRIDGES'][_openbridge]['NETWORK_ID'] }}</span></td>
-      <td class="col3">
-        {% for entry in _table['OPENBRIDGES'][_openbridge]['STREAMS']  %}
-        <div class="qso-badge">
-          <span class="type {{ 'RX' if _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][0] == 'RX' else 'TX' }}">{{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][0] }}</span>
-          <span class="call"> {{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][1] }}</span>
-          <span class="arrow">>></span>
-          <span class="tg">TG {{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][2] }}</span>
-        </div>
-        {% endfor %}
-      </td>
-    </tr>
-    {% endfor %}
+      {% for _openbridge in _table['OPENBRIDGES'] %}
+      <tr>
+        <td class="col1"><b>{{ _openbridge}}</b></td>
+        <td class="col2">
+          Net ID:
+          <span class="dmr-id"
+            >{{ _table['OPENBRIDGES'][_openbridge]['NETWORK_ID'] }}</span
+          >
+        </td>
+        <td class="col3">
+          {% for entry in _table['OPENBRIDGES'][_openbridge]['STREAMS'] %}
+          <div class="qso-badge">
+            <span
+              class="type {{ 'RX' if _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][0] == 'RX' else 'TX' }}"
+              >{{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][0]
+              }}</span
+            >
+            <span class="call">
+              {{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][1]
+              }}</span
+            >
+            <span class="arrow">>></span>
+            <span class="tg"
+              >TG {{ _table['OPENBRIDGES'][_openbridge]['STREAMS'][entry][2]
+              }}</span
+            >
+          </div>
+          {% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
     </tbody>
   </table>
-{% else %}
+  {% else %}
   <table class="w4data">
-    <tr><td><b>Waiting for Server...</b></td></tr>
+    <tr>
+      <td><b>Waiting for Server...</b></td>
+    </tr>
   </table>
-{% endif %}
+  {% endif %}
 </fieldset>
