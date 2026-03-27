@@ -25,6 +25,7 @@ function toggleDropdown(el) {
   document.addEventListener('click', function(e) {
     if (!dropdown.contains(e.target)) {
       dropdown.classList.remove('active');
+      el.blur();
     }
   });
 }

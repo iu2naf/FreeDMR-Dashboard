@@ -659,6 +659,15 @@ footer p {
 
 .navbar .dropbtn {
   cursor: pointer;
+  outline: none;
+}
+
+.navbar .dropbtn:focus {
+  outline: none;
+}
+
+.navbar .dropdown:not(.active) .dropbtn {
+  background: transparent;
 }
 
 .navbar .dropdown-content {
