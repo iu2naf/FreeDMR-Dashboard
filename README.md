@@ -1,6 +1,5 @@
-**FDMR Monitor is a "web dashboard" for FreeDMR servers by OA4DOA.**
+**FreeDMR Dashboard is a "web dashboard" for FreeDMR servers developed By FreeDMR-IT Dev Team.**
 
-***This version has been forked from HBMonitor V2 by SP2ONG 2019-2022***
 
 **This branch includes the Self Service page for configuring options through a web interface**  
 
@@ -49,8 +48,8 @@ be prepeard with the next information to make the installation easier:
 
 ```
   cd /opt  
-  sudo git clone https://github.com/yuvelq/FDMR-Monitor.git  
-  cd FDMR-Monitor  
+  sudo git clone https://github.com/iu2naf/FreeDMR-Dashboard.git  
+  cd FreeDMR-Dashboard  
   sudo git checkout Self_Service  
   sudo chmod +x install.sh  
   sudo ./install.sh  
