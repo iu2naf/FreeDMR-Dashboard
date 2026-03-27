@@ -18,7 +18,10 @@
     <?php include_once 'buttons.php'; ?>
   </nav>
   <noscript>You must enable JavaScript</noscript>
-  <p id="opb"></p>
+  <fieldset class="big">
+    <legend><b>.: OpenBridge Status :.</b></legend>
+    <p id="opb"></p>
+  </fieldset>
   <footer>
     <p>
       Copyright (c) 2016-<?php echo date("Y"); ?><br>

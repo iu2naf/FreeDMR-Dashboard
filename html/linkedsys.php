@@ -18,7 +18,10 @@
     <?php include_once 'buttons.php'; ?>
   </nav>
   <noscript>You must enable JavaScript</noscript>
-  <p id="lnksys"></p>
+  <fieldset class="big">
+    <legend><b>.: Linked Systems :.</b></legend>
+    <p id="lnksys"></p>
+  </fieldset>
   <footer>
     <p>
       Copyright (c) 2016-<?php echo date("Y"); ?><br>

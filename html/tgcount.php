@@ -18,7 +18,10 @@
     <?php include_once 'buttons.php'; ?>
   </nav>
   <noscript>You must enable JavaScript</noscript>
-  <p id="tgcount"></p>
+  <fieldset class="big">
+    <legend><b>.: TG Statistics :.</b></legend>
+    <p id="tgcount"></p>
+  </fieldset>
   <footer>
     <p>
       Copyright (c) 2016-<?php echo date("Y"); ?><br>
