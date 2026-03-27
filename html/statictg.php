@@ -14,7 +14,7 @@
 <body>
   <img class="img-top" src="img/logo.png?random=323527528432525.24234" alt="">
   <h2><?php echo REPORT_NAME; ?></h2>
-  <nav class="nav-buttons">
+  <nav class="navbar">
     <?php include_once 'buttons.php'; ?>
   </nav>
   <noscript>You must enable JavaScript</noscript>

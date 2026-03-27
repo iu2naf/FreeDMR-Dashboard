@@ -618,3 +618,105 @@ footer p {
   margin: 16px auto;
   padding: 12px;
 }
+
+/* Navbar */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 8px 16px;
+  margin: 16px auto;
+  max-width: 1100px;
+  box-shadow: var(--shadow);
+}
+
+.navbar a {
+  color: var(--text-primary);
+  text-align: center;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 4px;
+}
+
+.navbar a:hover {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.navbar .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar .dropbtn {
+  cursor: pointer;
+}
+
+.navbar .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  min-width: 160px;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.navbar .dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.navbar .dropdown-content a:first-child {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.navbar .dropdown-content a:last-child {
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.navbar .dropdown:hover .dropdown-content,
+.navbar .dropdown:focus-within .dropdown-content,
+.navbar .dropdown.active .dropdown-content {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .navbar a {
+    text-align: left;
+    padding: 10px 16px;
+  }
+  
+  .navbar .dropdown-content {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding-left: 16px;
+  }
+  
+  .navbar .dropdown-content a {
+    padding: 8px 16px;
+  }
+}
