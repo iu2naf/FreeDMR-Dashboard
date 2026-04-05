@@ -65,6 +65,47 @@
   .tg-stats {
     padding: 16px 0;
   }
+  .search-filter {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  }
+  .search-input::placeholder {
+    color: var(--text-muted);
+  }
+  .filter-select {
+    padding: 10px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    min-width: 150px;
+  }
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
   .tg-stat-card {
     display: flex;
     gap: 16px;
@@ -100,7 +141,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+  }
+  .tg-stat-icon svg {
+    width: 24px;
+    height: 24px;
   }
   .tg-stat-icon.qso {
     background: linear-gradient(135deg, var(--call-green), #16a34a);
@@ -112,6 +156,10 @@
   }
   .tg-stat-icon.tg {
     background: linear-gradient(135deg, var(--tg-orange), #ea580c);
+    color: #fff;
+  }
+  .tg-stat-icon.avg {
+    background: linear-gradient(135deg, var(--primary), #1d4ed8);
     color: #fff;
   }
   .tg-stat-info {
@@ -154,6 +202,20 @@
     letter-spacing: 0.5px;
     position: sticky;
     top: 0;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  th:hover {
+    background: #3d4a5f;
+  }
+  th.sorted-asc::after {
+    content: " ▲";
+    font-size: 10px;
+  }
+  th.sorted-desc::after {
+    content: " ▼";
+    font-size: 10px;
   }
   tr:hover {
     background: var(--bg-hover);
@@ -166,6 +228,9 @@
   }
   .tg-row:hover {
     background: rgba(249, 115, 22, 0.1);
+  }
+  .tg-row.hidden {
+    display: none;
   }
   .tg-rank {
     font-family: "JetBrains Mono", monospace;
@@ -191,6 +256,28 @@
     padding: 4px 10px;
     border-radius: 4px;
     font-size: 13px;
+  }
+  .tg-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+  .tg-badge.tgif {
+    background: rgba(168, 85, 247, 0.2);
+    color: #a855f7;
+  }
+  .tg-badge.bm {
+    background: rgba(234, 88, 12, 0.2);
+    color: #ea580c;
+  }
+  .tg-badge.dmr {
+    background: rgba(14, 165, 233, 0.2);
+    color: #0ea5e9;
   }
   .tg-name {
     color: var(--call-green);
@@ -286,17 +373,29 @@
     background: rgba(239, 68, 68, 0.2);
     color: var(--danger);
   }
+  .th-qso, .th-time {
+    width: 100px;
+  }
+  .th-number {
+    width: 120px;
+  }
+  .th-callers {
+    width: 200px;
+  }
+  .th-rank {
+    width: 60px;
+  }
 </style>
 
 <fieldset class="big">
-  <!-- <legend><b>.: TG Statistics :.</b></legend> -->
   <div class="tg-stats">
-    {% if _table|length > 0 %} {% set total_qso = 0 %} {% set total_time = 0 %}
-    {% for itm in _table %} {% set total_qso = total_qso + itm[2] %} {% endfor
-    %}
+    {% if _table|length > 0 %} {% set total_qso = 0 %} {% set total_time = 0 %} {% for itm in _table %} {% set total_qso = total_qso + itm[2] %} {% set total_time = total_time + (itm[3]|replace('h','')|replace('m','')|int * 60 + itm[3]|replace('h','')|replace('m','')|int) if itm[3] else 0 %} {% endfor %}
+    {% set avg_duration = (total_time / total_qso / 60)|round(1) if total_qso > 0 else 0 %}
     <div class="tg-stat-card">
       <div class="tg-stat-item">
-        <div class="tg-stat-icon qso">📊</div>
+        <div class="tg-stat-icon qso">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </div>
         <div class="tg-stat-info">
           <div class="tg-stat-label">Total QSO</div>
           <div class="tg-stat-value">{{ total_qso }}</div>
@@ -304,7 +403,9 @@
         </div>
       </div>
       <div class="tg-stat-item">
-        <div class="tg-stat-icon time">⏱</div>
+        <div class="tg-stat-icon time">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
         <div class="tg-stat-info">
           <div class="tg-stat-label">Most Active</div>
           <div class="tg-stat-value">#1</div>
@@ -312,57 +413,75 @@
         </div>
       </div>
       <div class="tg-stat-item">
-        <div class="tg-stat-icon tg">🏆</div>
+        <div class="tg-stat-icon tg">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+        </div>
         <div class="tg-stat-info">
           <div class="tg-stat-label">Top Callsign</div>
-          <div class="tg-stat-value" style="font-size: 16px">
-            {{ _table[0][4][0] }}
-          </div>
+          <div class="tg-stat-value" style="font-size: 16px">{{ _table[0][4][0] }}</div>
           <div class="tg-stat-sub">{{ _table[0][2] }} QSO</div>
         </div>
       </div>
+      <div class="tg-stat-item">
+        <div class="tg-stat-icon avg">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </div>
+        <div class="tg-stat-info">
+          <div class="tg-stat-label">Avg Duration</div>
+          <div class="tg-stat-value">{{ avg_duration }}m</div>
+          <div class="tg-stat-sub">per QSO</div>
+        </div>
+      </div>
+    </div>
+    <div class="search-filter">
+      <input type="text" class="search-input" id="tgSearch" placeholder="Search TG number or name...">
+      <select class="filter-select" id="tgFilter">
+        <option value="all">All TGs</option>
+        <option value="tgif">TGIF (31xx)</option>
+        <option value="bm">Brandmeister</option>
+        <option value="dmr">DMR+</option>
+      </select>
     </div>
     {% set max_qso = _table[0][2] if _table|length > 0 else 1 %}
-    <table>
+    {% set max_time = _table[0][3]|replace('h','')|replace('m','')|int if _table|length > 0 else 1 %}
+    <table id="tgTable">
       <thead>
         <tr>
-          <th style="width: 60px">#</th>
-          <th style="width: 120px">TG Number</th>
-          <th>Talk Group Name</th>
-          <th style="width: 100px">QSO Count</th>
-          <th style="width: 120px">Total Time</th>
-          <th style="width: 200px">Top Callers</th>
+          <th class="th-rank" data-sort="rank">#</th>
+          <th class="th-number" data-sort="number">TG Number</th>
+          <th data-sort="name">Talk Group Name</th>
+          <th class="th-qso" data-sort="qso">QSO Count</th>
+          <th class="th-time" data-sort="time">Total Time</th>
+          <th class="th-callers">Top Callers</th>
         </tr>
       </thead>
       <tbody>
         {% for itm in _table %}
-        <tr class="tg-row">
+        {% set tg_num = itm[0]|int %}
+        <tr class="tg-row" data-tg="{{ itm[0] }}" data-name="{{ itm[1]|lower }}" data-calls="{{ itm[4]|join(',')|lower }}">
           <td>
-            {% if loop.index == 1 %}<span class="tg-rank gold">🥇</span> {% elif
-            loop.index == 2 %}<span class="tg-rank silver">🥈</span> {% elif
-            loop.index == 3 %}<span class="tg-rank bronze">🥉</span> {% else
-            %}<span class="tg-rank">{{ loop.index }}</span>{% endif %}
+            {% if loop.index == 1 %}<span class="tg-rank gold">🥇</span> {% elif loop.index == 2 %}<span class="tg-rank silver">🥈</span> {% elif loop.index == 3 %}<span class="tg-rank bronze">🥉</span> {% else %}<span class="tg-rank">{{ loop.index }}</span>{% endif %}
           </td>
-          <td><span class="tg-number">{{ itm[0] }}</span></td>
+          <td>
+            <span class="tg-number">{{ itm[0] }}</span>
+            {% if tg_num >= 3100 and tg_num < 3200 %}<span class="tg-badge tgif">TGIF</span>{% elif tg_num >= 4000 %}<span class="tg-badge bm">BM</span>{% else %}<span class="tg-badge dmr">DMR+</span>{% endif %}
+          </td>
           <td class="tg-name">{{ itm[1]|safe }}</td>
           <td>
             <span class="tg-qso-count">{{ itm[2] }}</span>
             <div class="progress-container">
-              <div
-                class="progress-bar qso"
-                style="width:{{ (itm[2] / max_qso * 100)|int }}%"
-              ></div>
+              <div class="progress-bar qso" style="width:{{ (itm[2] / max_qso * 100)|int }}%"></div>
             </div>
           </td>
           <td>
-            <span class="tg-time"
-              ><span class="tg-time-icon">⏱</span>{{ itm[3] }}</span
-            >
+            <span class="tg-time"><span class="tg-time-icon">⏱</span>{{ itm[3] }}</span>
+            <div class="progress-container">
+              <div class="progress-bar time" style="width:{{ (itm[3]|replace('h','')|replace('m','')|int / max_time * 100)|int }}%"></div>
+            </div>
           </td>
           <td>
             {% for call in itm[4][:3] %}
-            <span class="tg-callsign">{{ call }}</span>{% if not loop.last
-            %}<span class="txt-muted"> - </span>{% endif %} {% endfor %}
+            <span class="tg-callsign">{{ call }}</span>{% if not loop.last %}<span class="txt-muted"> - </span>{% endif %} {% endfor %}
           </td>
         </tr>
         {% endfor %}
@@ -379,3 +498,5 @@
     {% endif %}
   </div>
 </fieldset>
+
+

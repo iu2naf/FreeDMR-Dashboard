@@ -116,7 +116,12 @@ function Imsg(_msg) { main_tbl.innerHTML = _msg; };
 function Omsg(_msg) { opb_tbl.innerHTML = _msg; };
 function Smsg(_msg) { statictg_tbl.innerHTML = _msg; };
 function Hmsg(_msg) { lsthrd_log_tbl.innerHTML = _msg; };
-function Tmsg(_msg) { tgcount_tbl.innerHTML = _msg; };
+function Tmsg(_msg) { 
+  tgcount_tbl.innerHTML = _msg; 
+  if (typeof initTGTable === 'function') {
+    initTGTable();
+  }
+};
 
 
 function log(_msg) {
@@ -126,7 +131,7 @@ function log(_msg) {
 // Find tables that are present
 function conf_id() {
   const groups = ["main", "bridge", "lnksys", "opb", "statictg", "log", "lsthrd_log", "tgcount"];
-  const tags = [document.getElementsByTagName("p"), document.getElementsByTagName("pre")]
+  const tags = [document.getElementsByTagName("p"), document.getElementsByTagName("pre"), document.getElementsByTagName("div")]
   for (i = 0; i < tags.length; i++) {
     for (j = 0; j < tags[i].length; j++)
       if (groups.includes(tags[i][j].id)) {

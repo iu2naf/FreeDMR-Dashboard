@@ -5,13 +5,13 @@ include_once '../include/config.php';
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
+  --primary: #8b5cf6;
+  --primary-dark: #7c3aed;
   --secondary: #64748b;
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --accent: #06b6d4;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --accent: #f472b6;
   
   --bg-main: #0f172a;
   --bg-card: #1e293b;
@@ -78,6 +78,11 @@ fieldset {
   margin: 16px auto;
   box-shadow: var(--shadow);
   max-width: 1100px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 fieldset.big { max-width: 1100px; }
@@ -155,12 +160,14 @@ tr:nth-child(even) {
 /* Wait data */
 .w4data {
   width: 100%;
-  background: var(--bg-card);
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-hover) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
   border: 2px dashed var(--border);
   border-radius: var(--radius-md);
   padding: 30px;
   text-align: center;
-  color: var(--warning);
+  color: var(--text-secondary);
   font-size: 14px;
   font-weight: 500;
 }
@@ -334,13 +341,15 @@ tr:nth-child(even) {
 }
 
 .TX {
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
   color: white;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
 }
 
 .RX {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
   color: white;
+  box-shadow: 0 0 10px rgba(251, 146, 60, 0.4);
 }
 
 /* QSO Badge */
@@ -355,6 +364,12 @@ tr:nth-child(even) {
   margin: 4px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.qso-badge:hover {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
 }
 
 .qso-badge .type {
@@ -402,6 +417,7 @@ tr:nth-child(even) {
 .peer-status.connected {
   background: rgba(34, 197, 94, 0.2);
   color: var(--success);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
 }
 
 .peer-status.disconnected {
@@ -624,8 +640,10 @@ footer p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid var(--border);
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
   padding: 8px 16px;
   margin: 16px auto;
